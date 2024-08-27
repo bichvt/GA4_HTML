@@ -9,8 +9,8 @@
     <h1>Product 1</h1>
     <img src="product3.jpg" alt="Product 3 Image">
     <p>Price: $150</p>
-    <p>Quantity: <input type="number" id="quantity" value="1"></p>
-    <button onclick="saveOrder()">Order Now</button>
+    <p>Quantity: <input type="number" id="quantity" min="0" value="1"></p>
+    <button id = "order_button3" onclick="saveOrder()">Order Now</button>
 
     <script>
         function saveOrder() {
