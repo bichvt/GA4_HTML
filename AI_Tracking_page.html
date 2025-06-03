@@ -275,8 +275,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   else if (userAgent.includes('anthropic') || userAgent.includes('claude')) ai_source = 'claude_bot';
   else if (userAgent.includes('bingbot') || userAgent.includes('microsoft')) ai_source = 'copilot_bot';
 
+  // ✅ Gán biến vào window để GTM đọc được
+  window._ai_tracking_data = {
+    userAgent: navigator.userAgent,
+    referrer: document.referrer,
+    ai_source: ai_source
+  };
+
   if (ai_source !== 'unknown') {
-    fetch("https://www.google-analytics.com/mp/collect?measurement_id=G-2B58DVDCXH&api_secret=2xMIZ8QkQ5OSRYCRcg-9-w", {
+    fetch("https://www.google-analytics.com/mp/collect?measurement_id=G-2B58DVDVCXH&api_secret=2xMlZ8QkQ5OSRYCRcg-9-w", {
       method: "POST",
       body: JSON.stringify({
         client_id: Date.now().toString(),
@@ -296,7 +303,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 })();
 </script>
-
         </body>
         </body>
       </html>
