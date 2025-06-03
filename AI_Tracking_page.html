@@ -264,6 +264,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p style="clear: both;">&nbsp;</p>
 <p style="clear: both; text-align: right;"><span style="font-size: 8pt; color: #999999;">情報提供：株式会社PFC</span></p>
             </div>
+<script>
+(function() {
+  var userAgent = navigator.userAgent.toLowerCase();
+  var referrer = document.referrer.toLowerCase();
+  var ai_source = 'unknown';
+
+  if (userAgent.includes('gptbot') || userAgent.includes('openai')) ai_source = 'chatgpt_bot';
+  else if (userAgent.includes('google-llm') || userAgent.includes('googlebot')) ai_source = 'gemini_bot';
+  else if (userAgent.includes('anthropic') || userAgent.includes('claude')) ai_source = 'claude_bot';
+  else if (userAgent.includes('bingbot') || userAgent.includes('microsoft')) ai_source = 'copilot_bot';
+
+  if (ai_source !== 'unknown') {
+    fetch("https://www.google-analytics.com/mp/collect?measurement_id=G-2B58DVDCXH&api_secret=2xMIZ8QkQ5OSRYCRcg-9-w", {
+      method: "POST",
+      body: JSON.stringify({
+        client_id: Date.now().toString(),
+        events: [{
+          name: "ai_bot_crawl",
+          params: {
+            ai_source: ai_source,
+            user_agent: navigator.userAgent,
+            page_url: window.location.href
+          }
+        }]
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  }
+})();
+</script>
+
         </body>
         </body>
       </html>
