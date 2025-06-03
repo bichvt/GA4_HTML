@@ -14,63 +14,20 @@
   if (userAgent.includes('chatgpt-user') || userAgent.includes('gptbot') || userAgent.includes('oai-searchbot')) {
     ai_source = 'chatgpt_bot';
   } 
-// ChatGPT web
-else if (referrer.includes('chatgpt.com') || referrer.includes('chat.openai.com')) {
-    ai_source = 'chatgpt_web';
-  }
-// ChatGPT app	
-else if (userAgent.includes('chatgpt')) {
-    ai_source = 'chatgpt_app';
-  }
 // Gemini Bot
 else if (userAgent.includes('google-extended') || userAgent.includes('google-llm')|| userAgent.includes('google-ai')) {
     ai_source = 'gemini_bot';
   } 
-// Gemini web
-else if (referrer.includes('gemini.google.com') || referrer.includes('aistudio.google.com')) {
-    ai_source = 'gemini_web';
-// Gemini app
-else if (userAgent.includes('gemini') || userAgent.includes('gsa/') || userAgent.includes('com.google.android.googlequicksearchbox') {
-    ai_source = 'gemini_app';
 // Claude Bot
 else if (userAgent.includes('claudebot') || userAgent.includes('claude-web') || userAgent.includes('anthropic-ai')) {
     ai_source = 'claude_bot';
-// Claude web
-else if (referrer.includes('claude.ai')) {
-    ai_source = 'claude_web';
-  } 
-// Claude App
-else if (userAgent.includes('anthropic')) {
-    ai_source = 'claude_app';
-  }
-
 // Copilot Bot
 else  if (userAgent.includes('bingbot')) {
     ai_source = 'copilot_bot';
   }
-// Copilot Web
-else if (referrer.includes('copilot.microsoft.com')) {
-    ai_source = 'copilot_web';
-  } 
-// Copilot App
-else  if (userAgent.includes('copilot') || userAgent.includes('microsoft')) {
-    ai_source = 'copilot_app';
-  }
-
-  // ✅ Gán vào biến toàn cục để GTM đọc
-  window._ai_tracking_data = {
-    userAgent: navigator.userAgent,
-    referrer: document.referrer,
-    ai_source: ai_source
-  };
 
   // ✅ Chỉ gửi event nếu là bot AI
-  if (
-    ai_source === 'chatgpt_bot' ||
-    ai_source === 'gemini_bot' ||
-    ai_source === 'claude_bot' ||
-    ai_source === 'copilot_bot'
-  ) {
+  if (ai_source !=== 'unknown' ) {
     fetch("https://www.google-analytics.com/mp/collect?measurement_id=G-2B58DVDVCXH&api_secret=2xMlZ8QkQ5OSRYCRcg-9-w", {
       method: "POST",
       body: JSON.stringify({
