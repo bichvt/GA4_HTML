@@ -4,50 +4,7 @@
         <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
       <title>AI Tracking Page</title>
 		
-<script>
-(function() {
-  var userAgent = navigator.userAgent.toLowerCase();
-  var referrer = document.referrer.toLowerCase();
-  var ai_source = 'unknown';
 
-// ChatGPT bot
-  if (userAgent.includes('chatgpt-user') || userAgent.includes('gptbot') || userAgent.includes('oai-searchbot')) {
-    ai_source = 'chatgpt_bot';
-  } 
-// Gemini Bot
-else if (userAgent.includes('google-extended') || userAgent.includes('google-llm')|| userAgent.includes('google-ai')) {
-    ai_source = 'gemini_bot';
-  } 
-// Claude Bot
-else if (userAgent.includes('claudebot') || userAgent.includes('claude-web') || userAgent.includes('anthropic-ai')) {
-    ai_source = 'claude_bot';
-// Copilot Bot
-else  if (userAgent.includes('bingbot')) {
-    ai_source = 'copilot_bot';
-  }
-
-  // ✅ Chỉ gửi event nếu là bot AI
-  if (ai_source !=== 'unknown' ) {
-    fetch("https://www.google-analytics.com/mp/collect?measurement_id=G-2B58DVDVCXH&api_secret=2xMlZ8QkQ5OSRYCRcg-9-w", {
-      method: "POST",
-      body: JSON.stringify({
-        client_id: Date.now().toString(),
-        events: [{
-          name: "ai_bot_crawl",
-          params: {
-            ai_source_bot: ai_source,
-            user_agent_bot: navigator.userAgent,
-            page_url_bot: window.location.href
-          }
-        }]
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-  }
-})();
-</script>
 
 <!-- Google Tag Manager TrackingAI_data bichvt233_demoAI_Tracking-->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
